@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Lista de Clientes</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <ul>
+        {% for customer in customers %}
+            <li>{{ customer.email }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
