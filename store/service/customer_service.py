@@ -8,7 +8,6 @@ class CustomerService:
         return Customer.objects.all()
 
     def fetch_and_create_customers(self):
-        # URL da API JSONPlaceholder para listar usuários
         api_url = 'https://jsonplaceholder.typicode.com/users'
 
         try:
