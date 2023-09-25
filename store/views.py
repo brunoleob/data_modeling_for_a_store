@@ -1,7 +1,12 @@
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import redirect, render
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .forms import CustomerRegistrationForm
+from .models import Customer
+from .serializers import CustomerSerializer
 from .service.customer_service import CustomerService
 
 
@@ -26,11 +31,3 @@ def register_customer(request):
         form = CustomerRegistrationForm()
 
     return render(request, 'register.html', {'form': form})
-
-
-# def register_success(request):
-#     return render(request, 'register_success.html')
-
-
-# def register_failed(request):
-#     return render(request='register_failed.html')
