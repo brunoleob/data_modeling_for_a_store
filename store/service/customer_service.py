@@ -17,7 +17,6 @@ class CustomerService:
             if response.status_code == 200:
                 users = response.json()
                 for user in users:
-                    # Verifica se um usuário com o mesmo email já existe no banco de dados
                     existing_customer = Customer.objects.filter(
                         email=user['email']).first()
 
