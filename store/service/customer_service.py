@@ -1,6 +1,7 @@
 import requests
 
 from store.models import Customer
+from store.models.address import Address, CustomerAddress
 
 
 class CustomerService:
@@ -31,11 +32,25 @@ class CustomerService:
                         )
                         customer.save()
 
+                    address_data = user.get('address', None)
+
+                    if address_data:
+                        address, created = Address.objects.get_or_create(
+                            street=address_data['street'],
+                            city=address_data['city'],
+                            cep=address_data['zipcode']
+                        )
+
+                        if not existing_customer:
+                            customer_address, created = CustomerAddress.objects.get_or_create(
+                                customer=customer,
+                                address=address
+                            )
+
                 return True
             else:
                 print(f'Error in API request: {response.status_code}')
                 return False
-
         except Exception as e:
             print(f'Error accessing the API: {str(e)}')
             return False
