@@ -15,12 +15,6 @@ def index(request):
     return render(request, 'store.html')
 
 
-def customer_list(request):
-    customer_service = CustomerService()
-    customers = customer_service.customer_list()
-    return render(request, 'customer_list.html', {'customers': customers})
-
-
 def register_customer(request):
     if request.method == 'POST':
         form = CustomerRegistrationForm(request.POST)
